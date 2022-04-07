@@ -13,14 +13,14 @@ enum ___FILEBASENAME___Endpoint {
     
 }
 
-class ___FILEBASENAME___: BaseRouter {
+class ___FILEBASENAME___: BaseRouter2 {
     
     var endpoint: UserEndpoint
     init(endpoint: UserEndpoint) {
         self.endpoint = endpoint
     }
     
-    override var method: HTTPMethod {
+    override var method: Alamofire.HTTPMethod {
         switch endpoint {
         
         }
@@ -41,6 +41,15 @@ class ___FILEBASENAME___: BaseRouter {
     override var headers: HTTPHeaders {
         switch endpoint {
         
+        }
+    }
+    
+    override var encoding: ParameterEncoding {
+        switch method {
+            case .get:
+                return URLEncoding.default
+            default:
+                return JSONEncoding.default
         }
     }
 }
